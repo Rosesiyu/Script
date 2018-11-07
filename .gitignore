@@ -1,6 +1,7 @@
 #Windows
 NFCLog
 output
+*.xml
 
 #Python:
 *.pyc
