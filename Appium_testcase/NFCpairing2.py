@@ -15,7 +15,7 @@ import init
 from init import serport
 
 if (len(sys.argv) < 2):
-    print "Invalid parameters,please enter 1 parameter!"
+    print ("Invalid parameters,please enter 1 parameter!")
     exit()
 
 PairTimes = sys.argv[1]
@@ -64,8 +64,6 @@ def NFCPairing():
 			n += 1
 			Log(Log_file,"NFC Pairing failed !!! Failed counter: " + str(n))
 		Log(Log_file,"NFC Pairing succeed !!! Succeed counter: " + str(x))
-		Log(Log_file,"Change wifi id :" + str(x))
-		init.Change_WIFI()
 
 def thread():
 	global match_state
@@ -79,5 +77,4 @@ def thread():
 
 if __name__=="__main__":
 	thread()
-#	driver.quit()
 

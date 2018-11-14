@@ -1,15 +1,12 @@
 # -- coding: utf-8 --
-import unittest
-import time
-import datetime
-from appium import webdriver
-from appium.webdriver.common.touch_action import TouchAction
-import sys
-import urllib
 import os
 import re
+import sys
+import time
+
 import serial
-import ctypes
+from appium import webdriver
+
 from constant import const
 
 readDeviceId = list(os.popen('adb devices').readlines())
@@ -21,7 +18,6 @@ desired_caps['platformVersion'] = '7.1'
 desired_caps['deviceName'] = 'device_id'
 desired_caps['appPackage'] = 'fitshang.com.shaperlauncher'
 desired_caps['appActivity'] =  '.mvp.ui.view.main.MainActivity'
-#desired_caps['newCommandTimeout'] =  '20000'
 desired_caps['automationName'] = 'uiautomator2'
 driver = webdriver.Remote('http://localhost:4723/wd/hub',desired_caps)	#启动app
 time.sleep(20)
@@ -30,8 +26,8 @@ match_state = None
 str_towrite = None
 state = None
 serport = serial.Serial(port='COM4', baudrate=115200, timeout=2)
-if(serport is None):
-	print "SwitchAdb: Can't find the serial port!"
+if serport is None:
+	print("SwitchAdb: Can't find the serial port!")
 
 def getButton(ButtonName):
 	if "id/" in ButtonName: 
@@ -49,17 +45,17 @@ def clickButton(ButtonName):
 
 #教练登陆
 def LoginTrainer():
-	clickButton(const.btn_RelativeLayout) 
+	clickButton(const.btn_RelativeLayout)
 	try:
 		Button = getButton(const.btn_trainer_tel)
 		if Button:
 			inputPW()
 			time.sleep(5)
 	except Exception as e:
-		print "Please add user!"
+		print ('Please add user!')
 		LoginAdmin()
 		CreateTrainer_User()
-		LogoutAdmin()
+		Logout()
 		LoginTrainer()
 
 def clickAdd():
@@ -84,24 +80,24 @@ def addWirelessUser():
 	clickAdd()
 	clickButton(const.btn_wireless_mode) #选择无线模式
 	SwitchAdb()
-	print "Pairing!!!"
+	print ("Pairing!!!")
 	time.sleep(40)
-	print "End of match"
+	print ("End of match")
 	result = None
 	n = 0
 	try:
 		result = getButton(const.btn_wireless_mode)
 		while result:
 			n += 1
-			print "NFC Pairing failed !!! Failed counter: " + str(n)
+			print ("NFC Pairing failed !!! Failed counter: " + str(n))
 			result.click() #选择无线模式
 			SwitchAdb()
-			print "Pairing!!!"
+			print ("Pairing!!!")
 			time.sleep(40)
-			print "End of match"
+			print ("End of match")
 			result = getButton(const.btn_wireless_mode)
 	except Exception as e:
-		print "NFC Pairing succeed !!!"
+		print ("NFC Pairing succeed !!!")
 
 def inputPW():
 	clickButton(const.btn_one)
@@ -116,33 +112,33 @@ def LogoutTrainer():
 	try:
 		loading_exist = getButton(const.btn_loading)
 		if loading_exist:
-			print "Failed to logout trainer!"
+			print ("Failed to logout trainer!")
 			sys.exit()
 	except Exception as e:
 		pass
 	try:
 		trainer_tel = getButton(const.btn_trainer_tel)
 		if trainer_tel:
-			print "Logout successfully!"
+			print ("Logout successfully!")
 	except Exception as e:
-		print "Failed to get the trainer list!"
+		print ("Failed to get the trainer list!")
 		pw_exist = getButton(const.btn_psw_lable)
 		if not pw_exist:
-			print "The page is blank!"
+			print ("The page is blank!")
 		sys.exit()
 
 def SwitchAdb():
-	serport.write('\r$EEPD\r')
-	serport.write('\r$EEPU\r')
-	serport.write('\r$EEPP\r') 
-	print "In pairing state !"
+	serport.write(b'\r$EEPD\r')
+	serport.write(b'\r$EEPU\r')
+	serport.write(b'\r$EEPP\r') 
+	print ("In pairing state !")
 
 def chooseWirelessMode():
 	clickButton(const.btn_wireless_mode) #选择无线模式
 	SwitchAdb()
-	print "Pairing!!!"
+	print ("Pairing!!!")
 	time.sleep(45)
-	print "End of match"
+	print ("End of match")
 	result = None
 	try:
 		result = getButton(const.btn_wireless_mode)
@@ -159,11 +155,11 @@ def Change_WIFI():
 		wifi_id = getButton(const.btn_wifi_input).text
 		clickButton(const.btn_input_clear)
 		if wifi_id == "SFBVB-PSXR3-SFB2X-OOGGA":
-			print "Connect S3000000"		
+			print ("Connect S3000000")
 			getButton(const.btn_wifi_input).send_keys("SFVUI-HCXR3-SFB2X-OOGGA")
 			clickButton(const.btn_Network_ID)
 		else:
-			print "Connect S1000000"
+			print ("Connect S1000000")
 			getButton(const.btn_wifi_input).send_keys("SFBVB-PSXR3-SFB2X-OOGGA")
 			clickButton(const.btn_Network_ID)
 		time.sleep(5)
@@ -242,10 +238,10 @@ def Start():
 	time.sleep(2)
 	state = get_training_state()
 	if(state != 'Started'):
-		print "Failed to start"
-		clickButton(const.btn_start) 
+		print ("Failed to start")
+		clickButton(const.btn_start)
 	else:
-		print "Started successfully!"
+		print ("Started successfully!")
 	time.sleep(7)
 	try:
 		progress_bar = getButton(const.btn_progress_bar)
@@ -267,10 +263,10 @@ def Pause():
 	time.sleep(2)
 	state = get_training_state()
 	if(state != "Paused"):
-		print "Failed to pause"
+		print ("Failed to pause")
 #		clickButton(const.btn_start)
 	else:
-		print "Paused successfully!"
+		print ("Paused successfully!")
 	time.sleep(7)
 
 def Stop():
@@ -279,10 +275,10 @@ def Stop():
 	time.sleep(2)
 	state = get_training_state()
 	if(state != "Stopped"):
-		print "Failed to stop"
+		print ("Failed to stop")
 #		clickButton(const.btn_back)
 	else:
-		print "Stopped successfully!"
+		print ("Stopped successfully!")
 	time.sleep(7)
 
 
@@ -306,9 +302,9 @@ def CreateAccount(account,password):
 	try:
 		NickName1 = getButton(const.btn_trainer_name).text
 		if NickName1 == account:
-			print "Create " + account + " successfully!"
+			print ("Create " + account + " successfully!")
 	except Exception as e:
-		print "Failed to create user!"
+		print ("Failed to create user!")
 		pass
 #删除学员
 def DeleteAccount():
@@ -320,9 +316,9 @@ def DeleteAccount():
 	try:
 		tel2 = getButton(const.btn_trainer_tel).text
 		if tel2 and tel2 == tel1:
-			print "Failed to deleteAccount!"
+			print ("Failed to deleteAccount!")
 	except Exception as e:
-		print "DeleteAccount successfully!"
+		print ("DeleteAccount successfully!")
 		pass
 #删除所有学员
 def DeleteAll():
@@ -336,7 +332,7 @@ def CreateTrainer_User():
 	NickName2 = getButton(const.btn_trainer_name).text
 	if NickName2 != "Add New Account" :
 		DeleteAll()
-		print "Delete all the trainers!"
+		print ("Delete all the trainers!")
 	CreateAccount("Maggie","13652456845")
 	CreateAccount("Kitty","18245623578")
 	CreateAccount("Cici","15254623548")
@@ -346,7 +342,7 @@ def CreateTrainer_User():
 	NickName3 = getButton(const.btn_trainer_name).text
 	if NickName3 != "Add New Account" :
 		DeleteAll()
-		print "Delete all the users!"
+		print ("Delete all the users!")
 	CreateAccount("Jeff","15245879523")
 	CreateAccount("Aimi","18245796583")
 	CreateAccount("Tomas","15212548565")
@@ -354,29 +350,29 @@ def CreateTrainer_User():
 	clickButton(const.btn_back)
 #系统设置
 def SystemSetting():
-	clickButton(const.btn_SystemSetting) 
+	clickButton(const.btn_SystemSetting)
 	time.sleep(3)
 	try:
 		display_btn = getButton(const.btn_name).text
 		if display_btn == "Display":
 			clickButton(const.btn_display)
 	except Exception as e:
-		print u"系统设置界面异常"
+		print (u"系统设置界面异常")
 		clickButton(const.btn_back)
 		clickButton(const.btn_SystemSetting)
 	finally:
 		clickButton(const.btn_display)
-		print "Enter the display interface"
+		print ("Enter the display interface")
 		clickButton(const.btn_back)
 		clickButton(const.btn_restore)
-		print "Enter the restore interface"
+		print ("Enter the restore interface")
 		clickButton(const.btn_confirm_cancel)
 		clickButton(const.btn_DateTime)
-		print "Enter the datetime interface"
+		print ("Enter the datetime interface")
 		clickButton(const.btn_back)
 		clickButton(const.btn_Language)
 		time.sleep(2)
-		print "Enter the language interface"
+		print ("Enter the language interface")
 		clickButton(const.btn_confirm_cancel)
 #登出
 def Logout():

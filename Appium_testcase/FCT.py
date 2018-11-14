@@ -1,21 +1,13 @@
 # -- coding: utf-8 --
-import unittest
-import time
 import datetime
-from appium import webdriver
-from appium.webdriver.common.touch_action import TouchAction
-import sys
-import urllib
 import os
-import re
-import serial
-import threading
-import ctypes
+import sys
+
 import init
 from constant import const
 
 if (len(sys.argv) < 2):
-    print "Invalid parameters,please enter 1 parameter!"
+    print ("Invalid parameters,please enter 1 parameter!")
     exit()
 
 times = sys.argv[1]
@@ -38,7 +30,7 @@ def Log(file,msg):
 
 def doExercise():
 	init.clickButton(const.btn_start)
-	for x in xrange(1,6):
+	for x in range(1,6):
 		if x == 1:
 			Log(Log_file,"Muscle Development mode!")
 			init.clickButton(const.btn_MuscleDevelopment)

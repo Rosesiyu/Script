@@ -16,7 +16,7 @@ from init import serport
 from constant import const
 
 if (len(sys.argv) < 2):
-    print "Invalid parameters,please enter 1 parameter!"
+    print ("Invalid parameters,please enter 1 parameter!")
     exit()
 
 PairTimes = sys.argv[1]

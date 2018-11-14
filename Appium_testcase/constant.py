@@ -1,11 +1,12 @@
-
 # -- coding: utf-8 --
 
 class Const(object):
     class ConstError(TypeError):
         pass
+
     class ConstCaseError(ConstError):
         pass
+
 
 const = Const()
 
@@ -41,7 +42,7 @@ const.btn_tainer_time_small = "fitshang.com.shaperlauncher:id/tv_tainer_time_sma
 
 const.btn_MuscleDevelopment = 'new UiSelector().text("Muscle Development")'
 const.btn_Cardiovascular = 'new UiSelector().text("Cardiovascular")'
-const.btn_Relax= 'new UiSelector().text("Relax")'
+const.btn_Relax = 'new UiSelector().text("Relax")'
 const.btn_ManualSetting = 'new UiSelector().text("Manual Setting")'
 const.btn_Professional = 'new UiSelector().text("Professional")'
 const.btn_wire_mode = 'new UiSelector().text("Wire Mode")'
@@ -50,7 +51,7 @@ const.btn_one = 'new UiSelector().text("1")'
 const.btn_two = 'new UiSelector().text("2")'
 const.btn_three = 'new UiSelector().text("3")'
 const.btn_four = 'new UiSelector().text("4")'
-const.btn_wifi_Connected= 'new UiSelector().text("Connected")'
+const.btn_wifi_Connected = 'new UiSelector().text("Connected")'
 const.btn_wifi_Connect = 'new UiSelector().text("Connect")'
 const.btn_SystemSetting = 'new UiSelector().text("System Setting")'
 const.btn_AccountSetting = 'new UiSelector().text("Account Setting")'

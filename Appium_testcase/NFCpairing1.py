@@ -15,7 +15,7 @@ import init
 from init import serport
 
 if (len(sys.argv) < 2):
-    print "Invalid parameters,please enter 1 parameter!"
+    print ("Invalid parameters,please enter 1 parameter!")
     exit()
 
 PairTimes = sys.argv[1]
@@ -46,9 +46,11 @@ init.LoginTrainer()
 match_state = None
 def SaveLog():
 	global match_state
-	serport.write('\r$EMD9\r')
+#	assert isinstance(serport.write, "\r$EMD9\r")
+	serport.write(b'\r$EMD9\r')
 	time.sleep(1)
-	serport.write('\r$EMD4\r')
+#	assert isinstance(serport.write, "\r$EMD4\r")
+	serport.write(b'\r$EMD4\r')
 	time.sleep(1)
 	while True:
 		data = serport.readline()
@@ -64,6 +66,8 @@ def NFCPairing():
 			n += 1
 			Log(Log_file,"NFC Pairing failed !!! Failed counter: " + str(n))
 		Log(Log_file,"NFC Pairing succeed !!! Succeed counter: " + str(x))
+		Log(Log_file,"Change wifi id :" + str(x))
+		init.Change_WIFI()
 
 def thread():
 	global match_state
@@ -77,4 +81,5 @@ def thread():
 
 if __name__=="__main__":
 	thread()
+#	driver.quit()
 

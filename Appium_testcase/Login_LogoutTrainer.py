@@ -10,7 +10,7 @@ import os
 import re
 
 if (len(sys.argv) < 2):
-    print "Invalid parameters,please enter 1 parameters!"
+    print ("Invalid parameters,please enter 1 parameters!")
     exit()
 
 readDeviceId = list(os.popen('adb devices').readlines())
@@ -137,8 +137,8 @@ def addUser():
 			nameA = driver.find_element_by_id('fitshang.com.shaperlauncher:id/tv_item_trainer_name').text
 			try:
 				assert(nameA == nameB),"Failed to add user!"
-			except AssertionError,msg:
-				print msg
+			except AssertionError as msg:
+				print (msg)
 	except Exception as e:
 		Log("Failed to get the user list!")
 		driver.find_element_by_id("fitshang.com.shaperlauncher:id/confirm_ok").click()
