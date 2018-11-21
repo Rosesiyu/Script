@@ -1,0 +1,9 @@
+#Windows
+NFCLog
+output
+*.xml
+*idea
+venv
+
+#Python:
+*.pyc
