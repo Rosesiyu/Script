@@ -27,40 +27,40 @@ if not os.path.exists(Log_path):
 
 
 def doExercise():
-    ConductButton.clickButton(const.btn_start)
+    ConductButton().clickButton(const.btn_start)
     for x in range(1, 6):
         if x == 1:
-            GetLog.log(Log_file, "Muscle Development mode!")
-            ConductButton.clickButton(const.btn_MuscleDevelopment)
+            GetLog().log(Log_file, "Muscle Development mode!")
+            ConductButton().clickButton(const.btn_MuscleDevelopment)
         if x == 2:
-            GetLog.log(Log_file, "Cardiovascular mode!")
-            ConductButton.clickButton(const.btn_Cardiovascular)
+            GetLog().log(Log_file, "Cardiovascular mode!")
+            ConductButton().clickButton(const.btn_Cardiovascular)
         if x == 3:
-            GetLog.log(Log_file, "Relax mode!")
-            ConductButton.clickButton(const.btn_Relax)
+            GetLog().log(Log_file, "Relax mode!")
+            ConductButton().clickButton(const.btn_Relax)
         if x == 4:
-            GetLog.log(Log_file, "Manual Setting mode!")
-            ConductButton.clickButton(const.btn_ManualSetting)
+            GetLog().log(Log_file, "Manual Setting mode!")
+            ConductButton().clickButton(const.btn_ManualSetting)
         if x == 5:
-            GetLog.log(Log_file, "Professional mode!")
-            ConductButton.clickButton(const.btn_Professional)
-        TrainingState.Start()
-        Change_Wifi.changeWifi()
-        AddUser.addWirelessUser()
-        TrainingState.Start()
-        TrainingState.Pause()
-        TrainingState.Stop()
-        ConductButton.clickButton(const.btn_back)
+            GetLog().log(Log_file, "Professional mode!")
+            ConductButton().clickButton(const.btn_Professional)
+        TrainingState().Start()
+        Change_Wifi().changeWifi()
+        AddUser().addWirelessUser()
+        TrainingState().Start()
+        TrainingState().Pause()
+        TrainingState().Stop()
+        ConductButton().clickButton(const.btn_back)
 
 
 for x in range(int(times)):
-    GetLog.log(Log_file, "Round: " + str(x))
-    Login_Logout.loginAdmin()
-#	ManageAccount.createTrainer_User()
-    SystemSetting.systemSetting()
-    Login_Logout.logOut()
-    Login_Logout.loginTrainer()
-    AddUser.addWireUser()
-    AddUser.addWirelessUser()
+    GetLog().log(Log_file, "Round: " + str(x))
+    Login_Logout().loginAdmin()
+#	ManageAccount().createTrainer_User()
+    SystemSetting().systemSetting()
+    Login_Logout().logOut()
+    Login_Logout().loginTrainer()
+    AddUser().addWireUser()
+    AddUser().addWirelessUser()
     doExercise()
-    Login_Logout.logOut()
+    Login_Logout().logOut()

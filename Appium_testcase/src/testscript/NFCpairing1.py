@@ -25,7 +25,7 @@ if not os.path.exists(NFClog_path):
     os.mkdir(NFClog_path)
 
 # 教练登陆
-Login_Logout.loginTrainer()
+Login_Logout().loginTrainer()
 
 match_state = None
 
@@ -38,7 +38,7 @@ def SaveLog():
     time.sleep(1)
     while True:
         data = SerialPort.serport.readline()
-        GetLog.log(NFClog_file, repr(data))
+        GetLog().log(NFClog_file, repr(data))
         if match_state == True:
             break
 
@@ -46,13 +46,13 @@ def SaveLog():
 def NFCPairing():
     n = 0
     for x in range(int(PairTimes)):
-        AddUser.clickAdd()
-        while AddUser.chooseWirelessMode():
+        AddUser().clickAdd()
+        while AddUser().chooseWirelessMode():
             n += 1
-            GetLog.log(Log_file, "NFC Pairing failed !!! Failed counter: " + str(n))
-        GetLog.log(Log_file, "NFC Pairing succeed !!! Succeed counter: " + str(x))
-        GetLog.log(Log_file, "Change wifi id :" + str(x))
-        Change_Wifi.changeWifi()
+            GetLog().log(Log_file, "NFC Pairing failed !!! Failed counter: " + str(n))
+        GetLog().log(Log_file, "NFC Pairing succeed !!! Succeed counter: " + str(x))
+        GetLog().log(Log_file, "Change wifi id :" + str(x))
+        Change_Wifi().changeWifi()
 
 
 def thread():

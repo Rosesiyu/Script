@@ -13,29 +13,29 @@ if len(sys.argv) < 3:
 number1 = sys.argv[1]
 number2 = sys.argv[2]
 work_path = os.getcwd()
-Log_path = work_path + "/output"
-Log_file = Log_path + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') +"/Doingexercise_wiremode.txt"
+Log_path = work_path + "/output/"
+Log_file = Log_path + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + "_Doingexercise_wiremode.txt"
 
 if not os.path.exists(Log_path):
     os.mkdir(Log_path)
 
-Login_Logout.loginTrainer()
-AddUser.addWireUser()
+Login_Logout().loginTrainer()
+AddUser().addWireUser()
 
 
 def Start_Pause():
-    TrainingState.Start()
+    TrainingState().Start()
     for m in range(int(number1)):
-        GetLog.log(Log_file, "pause counter: " + str(m))
-        TrainingState.Pause()
-        TrainingState.Start()
+        GetLog().log(Log_file, "pause counter: " + str(m))
+        TrainingState().Pause()
+        TrainingState().Start()
 
 
 def Start_Stop():
     for n in range(int(number2)):
-        GetLog.log(Log_file, "stop counter: " + str(n))
-        TrainingState.Stop()
-        TrainingState.Start()
+        GetLog().log(Log_file, "stop counter: " + str(n))
+        TrainingState().Stop()
+        TrainingState().Start()
 
 if __name__ == "__main__":
     Start_Pause()

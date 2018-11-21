@@ -13,11 +13,14 @@ from src.utils.ConductButton import ConductButton
 
 from src.utils.constant import const
 
+from src.utils.InputPW import InputPW
+    inputPW()
+
 from src.utils.Log import GetLog
 	log(file, msg)
 
 from src.utils.Login_Logout import Login_Logout
-	inputPW(),loginTrainer(),loginAdmin(),logoutTrainer(),logOut()
+	loginTrainer(),loginAdmin(),logoutTrainer(),logOut()
 
 from src.utils.ManageAccount import ManageAccount
 	createAccount(account, password),deleteAccount(),deleteAll(),createTrainer_User()
