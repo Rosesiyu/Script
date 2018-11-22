@@ -1,8 +1,0 @@
-Script,Details,Input,,
-AccountSetting.py,反复删除和添加账户,2,删除和添加学员次数,删除和添加学员次数
-Doingexercise_wiremode.py,训练界面，反复开始和暂停，反复开始和停止,2,反复开始和暂停次数,反复开始和停止次数
-FCT.py,管理员登陆、删除与创建账户、系统设置、登出、教练登陆、添加有线学员、添加无线学员、训练、登出,1,所有测试点的循环次数,
-Login_LogoutTrainer.py,教练登陆、添加有线学员、教练退出,1,所有测试点的循环次数,
-NFCpairing1.py,在教练登陆成功界面反复更换网络进行NFC配对,1,NFC配对次数,
-NFCpairing2.py,在教练登陆成功界面反复进行NFC配对,1,NFC配对次数,
-NFCpairing3.py,训练界面，反复修改网络，配对,1,NFC配对次数,

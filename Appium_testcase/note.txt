@@ -1,3 +1,0 @@
-NFCpairing1.py      教练登陆成功界面，反复修改网络，配对
-NFCpairing2.py      教练登陆成功界面，不修改网络，配对
-NFCpairing3.py      训练界面，反复修改网络，配对
